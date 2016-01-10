@@ -1,0 +1,1357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="realStateDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adminFees">
+          <Key>
+            <PropertyRef Name="adminFeeid" />
+          </Key>
+          <Property Name="adminFeeid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminFeeDefinitionId" Type="int" />
+          <Property Name="adminFeeDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="contractId" Type="bigint" />
+          <Property Name="value" Type="money" />
+          <Property Name="percentageValue" Type="money" />
+          <Property Name="Total" Type="money" />
+          <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="adminFeesDefinition">
+          <Key>
+            <PropertyRef Name="adminFeeDefinitionId" />
+          </Key>
+          <Property Name="adminFeeDefinitionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="value" Type="money" />
+          <Property Name="percentage" Type="int" />
+        </EntityType>
+        <EntityType Name="assets">
+          <Key>
+            <PropertyRef Name="assetId" />
+          </Key>
+          <Property Name="assetId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assetTypeId" Type="int" />
+          <Property Name="contractId" Type="bigint" />
+          <Property Name="brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="serialNo" Type="nvarchar(max)" />
+          <Property Name="value" Type="money" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="condition" Type="nvarchar" MaxLength="50" />
+          <Property Name="givenOn" Type="datetime" />
+          <Property Name="takenOn" Type="datetime" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="assetTypes">
+          <Key>
+            <PropertyRef Name="assetTypeId" />
+          </Key>
+          <Property Name="assetTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="checkListAssets">
+          <Key>
+            <PropertyRef Name="checkListAssetId" />
+          </Key>
+          <Property Name="checkListAssetId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assetId" Type="bigint" />
+          <Property Name="checkListReportId" Type="bigint" />
+          <Property Name="condition" Type="nvarchar" MaxLength="50" />
+          <Property Name="notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="checkListReportData">
+          <Key>
+            <PropertyRef Name="checkListReportDataId" />
+          </Key>
+          <Property Name="checkListReportDataId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="checkListReportId" Type="bigint" />
+          <Property Name="reportDifinitionId" Type="int" />
+          <Property Name="condition" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="checkListReportDefinitions">
+          <Key>
+            <PropertyRef Name="checkListItemId" />
+          </Key>
+          <Property Name="checkListItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="checkListReports">
+          <Key>
+            <PropertyRef Name="checkListReportId" />
+          </Key>
+          <Property Name="checkListReportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reportDate" Type="datetime" />
+          <Property Name="performedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="waterAndElectricityCleared" Type="bit" />
+          <Property Name="accepted" Type="bit" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+          <Property Name="contractId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="contracts">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="housingUnitId" Type="bigint" />
+          <Property Name="contractNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="locationReference" Type="nvarchar" MaxLength="50" />
+          <Property Name="contractTypeId" Type="int" />
+          <Property Name="tenantName" Type="nvarchar" MaxLength="150" />
+          <Property Name="emiratesId" Type="nvarchar" MaxLength="50" />
+          <Property Name="emiratesIdExpire" Type="datetime" />
+          <Property Name="passportNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="passportExpire" Type="datetime" />
+          <Property Name="contactNumber1" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactNumber2" Type="nvarchar" MaxLength="50" />
+          <Property Name="POBox" Type="nvarchar" MaxLength="50" />
+          <Property Name="nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="rentValue" Type="money" />
+          <Property Name="NoOfPayments" Type="int" />
+          <Property Name="familyMembers" Type="int" />
+          <Property Name="familyMembersDescription" Type="nvarchar(max)" />
+          <Property Name="insuranceDeposit" Type="money" />
+          <Property Name="insuranceDeduction" Type="money" />
+          <Property Name="insuranceRefunded" Type="money" />
+          <Property Name="insuranceDeductionDescription" Type="nvarchar(max)" />
+          <Property Name="insuranceRefundReceivedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="checkListReportReceived" Type="bit" />
+          <Property Name="isHolded" Type="bit" />
+          <Property Name="holdedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="isRenewed" Type="bit" />
+          <Property Name="isEnded" Type="bit" />
+          <Property Name="notes" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="contractTypes">
+          <Key>
+            <PropertyRef Name="contractTypeId" />
+          </Key>
+          <Property Name="contractTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DMS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uploadDatetime" Type="datetime" />
+          <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="systemCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="systemReferenceId" Type="bigint" />
+          <Property Name="fileName" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="fileContent" Type="varbinary(max)" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="housingUnits">
+          <Key>
+            <PropertyRef Name="housingUnitId" />
+          </Key>
+          <Property Name="housingUnitId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="housingUnitTypeId" Type="int" />
+          <Property Name="usageTypeId" Type="int" />
+          <Property Name="UnitNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="emirate" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar(max)" />
+          <Property Name="tawtheeqId" Type="nvarchar" MaxLength="50" />
+          <Property Name="zone" Type="nvarchar" MaxLength="50" />
+          <Property Name="sector" Type="nvarchar" MaxLength="50" />
+          <Property Name="plot" Type="nvarchar" MaxLength="50" />
+          <Property Name="ownerName" Type="nvarchar(max)" />
+          <Property Name="areaSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="parent" Type="bigint" />
+          <Property Name="treeLevel" Type="int" />
+          <Property Name="vacant" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="subjectToRent" Type="bit" />
+          <Property Name="hasSubUnits" Type="bit" />
+          <Property Name="treePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="housingUnitTypes">
+          <Key>
+            <PropertyRef Name="housingUnitTypeId" />
+          </Key>
+          <Property Name="housingUnitTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="maintenanceInvoices">
+          <Key>
+            <PropertyRef Name="maintenanceInvoiceId" />
+          </Key>
+          <Property Name="maintenanceInvoiceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maintenanceRequestId" Type="bigint" />
+          <Property Name="invoiceNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="invoiceDate" Type="date" />
+          <Property Name="invoiceValue" Type="money" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="maintenanceRequests">
+          <Key>
+            <PropertyRef Name="maintenanceRequestId" />
+          </Key>
+          <Property Name="maintenanceRequestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requestDate" Type="datetime" />
+          <Property Name="maintenanceTypeId" Type="int" />
+          <Property Name="requestedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="housingUnitId" Type="bigint" />
+          <Property Name="reported" Type="bit" />
+          <Property Name="reportingDate" Type="datetime" />
+          <Property Name="reportedTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="resolved" Type="bit" />
+          <Property Name="resolveDate" Type="datetime" />
+          <Property Name="resolvedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="problemDescription" Type="nvarchar(max)" />
+          <Property Name="resolutionDescription" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="maintenanceTypes">
+          <Key>
+            <PropertyRef Name="maintenanceTypeId" />
+          </Key>
+          <Property Name="maintenanceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paymenys">
+          <Key>
+            <PropertyRef Name="paymentId" />
+          </Key>
+          <Property Name="paymentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractId" Type="bigint" />
+          <Property Name="collected" Type="bit" />
+          <Property Name="collectedOn" Type="datetime" />
+          <Property Name="deposited" Type="bit" />
+          <Property Name="depositedOn" Type="datetime" />
+          <Property Name="cleared" Type="bit" />
+          <Property Name="clearedOn" Type="datetime" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="usageTypes">
+          <Key>
+            <PropertyRef Name="usageTypeId" />
+          </Key>
+          <Property Name="usageTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_adminFees_adminFeesDefinition">
+          <End Role="adminFeesDefinition" Type="Self.adminFeesDefinition" Multiplicity="0..1" />
+          <End Role="adminFees" Type="Self.adminFees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adminFeesDefinition">
+              <PropertyRef Name="adminFeeDefinitionId" />
+            </Principal>
+            <Dependent Role="adminFees">
+              <PropertyRef Name="adminFeeDefinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminFees_contracts">
+          <End Role="contracts" Type="Self.contracts" Multiplicity="0..1" />
+          <End Role="adminFees" Type="Self.adminFees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="adminFees">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assets_assetTypes">
+          <End Role="assetTypes" Type="Self.assetTypes" Multiplicity="0..1" />
+          <End Role="assets" Type="Self.assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="assetTypes">
+              <PropertyRef Name="assetTypeId" />
+            </Principal>
+            <Dependent Role="assets">
+              <PropertyRef Name="assetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assets_contracts">
+          <End Role="contracts" Type="Self.contracts" Multiplicity="0..1" />
+          <End Role="assets" Type="Self.assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="assets">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListAssets_assets">
+          <End Role="assets" Type="Self.assets" Multiplicity="0..1" />
+          <End Role="checkListAssets" Type="Self.checkListAssets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="assets">
+              <PropertyRef Name="assetId" />
+            </Principal>
+            <Dependent Role="checkListAssets">
+              <PropertyRef Name="assetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListAssets_checkListReports">
+          <End Role="checkListReports" Type="Self.checkListReports" Multiplicity="0..1" />
+          <End Role="checkListAssets" Type="Self.checkListAssets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checkListReports">
+              <PropertyRef Name="checkListReportId" />
+            </Principal>
+            <Dependent Role="checkListAssets">
+              <PropertyRef Name="checkListReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListReportData_checkListReportDefinitions">
+          <End Role="checkListReportDefinitions" Type="Self.checkListReportDefinitions" Multiplicity="0..1" />
+          <End Role="checkListReportData" Type="Self.checkListReportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checkListReportDefinitions">
+              <PropertyRef Name="checkListItemId" />
+            </Principal>
+            <Dependent Role="checkListReportData">
+              <PropertyRef Name="reportDifinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListReportData_checkListReports">
+          <End Role="checkListReports" Type="Self.checkListReports" Multiplicity="0..1" />
+          <End Role="checkListReportData" Type="Self.checkListReportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checkListReports">
+              <PropertyRef Name="checkListReportId" />
+            </Principal>
+            <Dependent Role="checkListReportData">
+              <PropertyRef Name="checkListReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contracts_contractTypes">
+          <End Role="contractTypes" Type="Self.contractTypes" Multiplicity="0..1" />
+          <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contractTypes">
+              <PropertyRef Name="contractTypeId" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="contractTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_housingUnits_housingUnitTypes">
+          <End Role="housingUnitTypes" Type="Self.housingUnitTypes" Multiplicity="0..1" />
+          <End Role="housingUnits" Type="Self.housingUnits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="housingUnitTypes">
+              <PropertyRef Name="housingUnitTypeId" />
+            </Principal>
+            <Dependent Role="housingUnits">
+              <PropertyRef Name="housingUnitTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_housingUnits_usageTypes">
+          <End Role="usageTypes" Type="Self.usageTypes" Multiplicity="0..1" />
+          <End Role="housingUnits" Type="Self.housingUnits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usageTypes">
+              <PropertyRef Name="usageTypeId" />
+            </Principal>
+            <Dependent Role="housingUnits">
+              <PropertyRef Name="usageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maintenanceInvoices_maintenanceRequests">
+          <End Role="maintenanceRequests" Type="Self.maintenanceRequests" Multiplicity="0..1" />
+          <End Role="maintenanceInvoices" Type="Self.maintenanceInvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maintenanceRequests">
+              <PropertyRef Name="maintenanceRequestId" />
+            </Principal>
+            <Dependent Role="maintenanceInvoices">
+              <PropertyRef Name="maintenanceRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maintenanceRequests_housingUnits">
+          <End Role="housingUnits" Type="Self.housingUnits" Multiplicity="0..1" />
+          <End Role="maintenanceRequests" Type="Self.maintenanceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="housingUnits">
+              <PropertyRef Name="housingUnitId" />
+            </Principal>
+            <Dependent Role="maintenanceRequests">
+              <PropertyRef Name="housingUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maintenanceRequests_maintenanceTypes">
+          <End Role="maintenanceTypes" Type="Self.maintenanceTypes" Multiplicity="0..1" />
+          <End Role="maintenanceRequests" Type="Self.maintenanceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maintenanceTypes">
+              <PropertyRef Name="maintenanceTypeId" />
+            </Principal>
+            <Dependent Role="maintenanceRequests">
+              <PropertyRef Name="maintenanceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymenys_contracts">
+          <End Role="contracts" Type="Self.contracts" Multiplicity="0..1" />
+          <End Role="paymenys" Type="Self.paymenys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="paymenys">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getFullHousingUnitName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="housingUnitId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="realStateDBModelStoreContainer">
+          <EntitySet Name="adminFees" EntityType="Self.adminFees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adminFeesDefinition" EntityType="Self.adminFeesDefinition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assets" EntityType="Self.assets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assetTypes" EntityType="Self.assetTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checkListAssets" EntityType="Self.checkListAssets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checkListReportData" EntityType="Self.checkListReportData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checkListReportDefinitions" EntityType="Self.checkListReportDefinitions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checkListReports" EntityType="Self.checkListReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contracts" EntityType="Self.contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contractTypes" EntityType="Self.contractTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DMS" EntityType="Self.DMS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="housingUnits" EntityType="Self.housingUnits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="housingUnitTypes" EntityType="Self.housingUnitTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maintenanceInvoices" EntityType="Self.maintenanceInvoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maintenanceRequests" EntityType="Self.maintenanceRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maintenanceTypes" EntityType="Self.maintenanceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paymenys" EntityType="Self.paymenys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usageTypes" EntityType="Self.usageTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_adminFees_adminFeesDefinition" Association="Self.FK_adminFees_adminFeesDefinition">
+            <End Role="adminFeesDefinition" EntitySet="adminFeesDefinition" />
+            <End Role="adminFees" EntitySet="adminFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminFees_contracts" Association="Self.FK_adminFees_contracts">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="adminFees" EntitySet="adminFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assets_assetTypes" Association="Self.FK_assets_assetTypes">
+            <End Role="assetTypes" EntitySet="assetTypes" />
+            <End Role="assets" EntitySet="assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assets_contracts" Association="Self.FK_assets_contracts">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="assets" EntitySet="assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListAssets_assets" Association="Self.FK_checkListAssets_assets">
+            <End Role="assets" EntitySet="assets" />
+            <End Role="checkListAssets" EntitySet="checkListAssets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListAssets_checkListReports" Association="Self.FK_checkListAssets_checkListReports">
+            <End Role="checkListReports" EntitySet="checkListReports" />
+            <End Role="checkListAssets" EntitySet="checkListAssets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListReportData_checkListReportDefinitions" Association="Self.FK_checkListReportData_checkListReportDefinitions">
+            <End Role="checkListReportDefinitions" EntitySet="checkListReportDefinitions" />
+            <End Role="checkListReportData" EntitySet="checkListReportData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListReportData_checkListReports" Association="Self.FK_checkListReportData_checkListReports">
+            <End Role="checkListReports" EntitySet="checkListReports" />
+            <End Role="checkListReportData" EntitySet="checkListReportData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contracts_contractTypes" Association="Self.FK_contracts_contractTypes">
+            <End Role="contractTypes" EntitySet="contractTypes" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_housingUnits_housingUnitTypes" Association="Self.FK_housingUnits_housingUnitTypes">
+            <End Role="housingUnitTypes" EntitySet="housingUnitTypes" />
+            <End Role="housingUnits" EntitySet="housingUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_housingUnits_usageTypes" Association="Self.FK_housingUnits_usageTypes">
+            <End Role="usageTypes" EntitySet="usageTypes" />
+            <End Role="housingUnits" EntitySet="housingUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maintenanceInvoices_maintenanceRequests" Association="Self.FK_maintenanceInvoices_maintenanceRequests">
+            <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+            <End Role="maintenanceInvoices" EntitySet="maintenanceInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maintenanceRequests_housingUnits" Association="Self.FK_maintenanceRequests_housingUnits">
+            <End Role="housingUnits" EntitySet="housingUnits" />
+            <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maintenanceRequests_maintenanceTypes" Association="Self.FK_maintenanceRequests_maintenanceTypes">
+            <End Role="maintenanceTypes" EntitySet="maintenanceTypes" />
+            <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymenys_contracts" Association="Self.FK_paymenys_contracts">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="paymenys" EntitySet="paymenys" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="realStateDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adminFee">
+          <Key>
+            <PropertyRef Name="adminFeeid" />
+          </Key>
+          <Property Name="adminFeeid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminFeeDefinitionId" Type="Int32" />
+          <Property Name="adminFeeDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contractId" Type="Int64" />
+          <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="percentageValue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="adminFeesDefinition" Relationship="Self.FK_adminFees_adminFeesDefinition" FromRole="adminFees" ToRole="adminFeesDefinition" />
+          <NavigationProperty Name="contract" Relationship="Self.FK_adminFees_contracts" FromRole="adminFees" ToRole="contracts" />
+        </EntityType>
+        <EntityType Name="adminFeesDefinition">
+          <Key>
+            <PropertyRef Name="adminFeeDefinitionId" />
+          </Key>
+          <Property Name="adminFeeDefinitionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="percentage" Type="Int32" />
+          <NavigationProperty Name="adminFees" Relationship="Self.FK_adminFees_adminFeesDefinition" FromRole="adminFeesDefinition" ToRole="adminFees" />
+        </EntityType>
+        <EntityType Name="asset">
+          <Key>
+            <PropertyRef Name="assetId" />
+          </Key>
+          <Property Name="assetId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assetTypeId" Type="Int32" />
+          <Property Name="contractId" Type="Int64" />
+          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serialNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="givenOn" Type="DateTime" Precision="3" />
+          <Property Name="takenOn" Type="DateTime" Precision="3" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="assetType" Relationship="Self.FK_assets_assetTypes" FromRole="assets" ToRole="assetTypes" />
+          <NavigationProperty Name="contract" Relationship="Self.FK_assets_contracts" FromRole="assets" ToRole="contracts" />
+          <NavigationProperty Name="checkListAssets" Relationship="Self.FK_checkListAssets_assets" FromRole="assets" ToRole="checkListAssets" />
+        </EntityType>
+        <EntityType Name="assetType">
+          <Key>
+            <PropertyRef Name="assetTypeId" />
+          </Key>
+          <Property Name="assetTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="assets" Relationship="Self.FK_assets_assetTypes" FromRole="assetTypes" ToRole="assets" />
+        </EntityType>
+        <EntityType Name="checkListAsset">
+          <Key>
+            <PropertyRef Name="checkListAssetId" />
+          </Key>
+          <Property Name="checkListAssetId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assetId" Type="Int64" />
+          <Property Name="checkListReportId" Type="Int64" />
+          <Property Name="condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="asset" Relationship="Self.FK_checkListAssets_assets" FromRole="checkListAssets" ToRole="assets" />
+          <NavigationProperty Name="checkListReport" Relationship="Self.FK_checkListAssets_checkListReports" FromRole="checkListAssets" ToRole="checkListReports" />
+        </EntityType>
+        <EntityType Name="checkListReportData">
+          <Key>
+            <PropertyRef Name="checkListReportDataId" />
+          </Key>
+          <Property Name="checkListReportDataId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="checkListReportId" Type="Int64" />
+          <Property Name="reportDifinitionId" Type="Int32" />
+          <Property Name="condition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="checkListReportDefinition" Relationship="Self.FK_checkListReportData_checkListReportDefinitions" FromRole="checkListReportData" ToRole="checkListReportDefinitions" />
+          <NavigationProperty Name="checkListReport" Relationship="Self.FK_checkListReportData_checkListReports" FromRole="checkListReportData" ToRole="checkListReports" />
+        </EntityType>
+        <EntityType Name="checkListReportDefinition">
+          <Key>
+            <PropertyRef Name="checkListItemId" />
+          </Key>
+          <Property Name="checkListItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="checkListReportDatas" Relationship="Self.FK_checkListReportData_checkListReportDefinitions" FromRole="checkListReportDefinitions" ToRole="checkListReportData" />
+        </EntityType>
+        <EntityType Name="checkListReport">
+          <Key>
+            <PropertyRef Name="checkListReportId" />
+          </Key>
+          <Property Name="checkListReportId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reportDate" Type="DateTime" Precision="3" />
+          <Property Name="performedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="waterAndElectricityCleared" Type="Boolean" />
+          <Property Name="accepted" Type="Boolean" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="contractId" Type="Int64" />
+          <NavigationProperty Name="checkListAssets" Relationship="Self.FK_checkListAssets_checkListReports" FromRole="checkListReports" ToRole="checkListAssets" />
+          <NavigationProperty Name="checkListReportDatas" Relationship="Self.FK_checkListReportData_checkListReports" FromRole="checkListReports" ToRole="checkListReportData" />
+        </EntityType>
+        <EntityType Name="contract">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="housingUnitId" Type="Int64" />
+          <Property Name="contractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="locationReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contractTypeId" Type="Int32" />
+          <Property Name="tenantName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="emiratesId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emiratesIdExpire" Type="DateTime" Precision="3" />
+          <Property Name="passportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="passportExpire" Type="DateTime" Precision="3" />
+          <Property Name="contactNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POBox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="rentValue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NoOfPayments" Type="Int32" />
+          <Property Name="familyMembers" Type="Int32" />
+          <Property Name="familyMembersDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="insuranceDeposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="insuranceDeduction" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="insuranceRefunded" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="insuranceDeductionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="insuranceRefundReceivedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="checkListReportReceived" Type="Boolean" />
+          <Property Name="isHolded" Type="Boolean" />
+          <Property Name="holdedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isRenewed" Type="Boolean" />
+          <Property Name="isEnded" Type="Boolean" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="adminFees" Relationship="Self.FK_adminFees_contracts" FromRole="contracts" ToRole="adminFees" />
+          <NavigationProperty Name="assets" Relationship="Self.FK_assets_contracts" FromRole="contracts" ToRole="assets" />
+          <NavigationProperty Name="contractType" Relationship="Self.FK_contracts_contractTypes" FromRole="contracts" ToRole="contractTypes" />
+          <NavigationProperty Name="paymenys" Relationship="Self.FK_paymenys_contracts" FromRole="contracts" ToRole="paymenys" />
+        </EntityType>
+        <EntityType Name="contractType">
+          <Key>
+            <PropertyRef Name="contractTypeId" />
+          </Key>
+          <Property Name="contractTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="contracts" Relationship="Self.FK_contracts_contractTypes" FromRole="contractTypes" ToRole="contracts" />
+        </EntityType>
+        <EntityType Name="DM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uploadDatetime" Type="DateTime" Precision="3" />
+          <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="systemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="systemReferenceId" Type="Int64" />
+          <Property Name="fileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="housingUnit">
+          <Key>
+            <PropertyRef Name="housingUnitId" />
+          </Key>
+          <Property Name="housingUnitId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="housingUnitTypeId" Type="Int32" />
+          <Property Name="usageTypeId" Type="Int32" />
+          <Property Name="UnitNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="emirate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tawtheeqId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="zone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="plot" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="areaSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parent" Type="Int64" />
+          <Property Name="treeLevel" Type="Int32" />
+          <Property Name="vacant" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="subjectToRent" Type="Boolean" />
+          <Property Name="hasSubUnits" Type="Boolean" />
+          <Property Name="treePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="housingUnitType" Relationship="Self.FK_housingUnits_housingUnitTypes" FromRole="housingUnits" ToRole="housingUnitTypes" />
+          <NavigationProperty Name="usageType" Relationship="Self.FK_housingUnits_usageTypes" FromRole="housingUnits" ToRole="usageTypes" />
+          <NavigationProperty Name="maintenanceRequests" Relationship="Self.FK_maintenanceRequests_housingUnits" FromRole="housingUnits" ToRole="maintenanceRequests" />
+        </EntityType>
+        <EntityType Name="housingUnitType">
+          <Key>
+            <PropertyRef Name="housingUnitTypeId" />
+          </Key>
+          <Property Name="housingUnitTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="housingUnits" Relationship="Self.FK_housingUnits_housingUnitTypes" FromRole="housingUnitTypes" ToRole="housingUnits" />
+        </EntityType>
+        <EntityType Name="maintenanceInvoice">
+          <Key>
+            <PropertyRef Name="maintenanceInvoiceId" />
+          </Key>
+          <Property Name="maintenanceInvoiceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maintenanceRequestId" Type="Int64" />
+          <Property Name="invoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invoiceDate" Type="DateTime" Precision="0" />
+          <Property Name="invoiceValue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="maintenanceRequest" Relationship="Self.FK_maintenanceInvoices_maintenanceRequests" FromRole="maintenanceInvoices" ToRole="maintenanceRequests" />
+        </EntityType>
+        <EntityType Name="maintenanceRequest">
+          <Key>
+            <PropertyRef Name="maintenanceRequestId" />
+          </Key>
+          <Property Name="maintenanceRequestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requestDate" Type="DateTime" Precision="3" />
+          <Property Name="maintenanceTypeId" Type="Int32" />
+          <Property Name="requestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="housingUnitId" Type="Int64" />
+          <Property Name="reported" Type="Boolean" />
+          <Property Name="reportingDate" Type="DateTime" Precision="3" />
+          <Property Name="reportedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="resolved" Type="Boolean" />
+          <Property Name="resolveDate" Type="DateTime" Precision="3" />
+          <Property Name="resolvedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="problemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="resolutionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="housingUnit" Relationship="Self.FK_maintenanceRequests_housingUnits" FromRole="maintenanceRequests" ToRole="housingUnits" />
+          <NavigationProperty Name="maintenanceInvoices" Relationship="Self.FK_maintenanceInvoices_maintenanceRequests" FromRole="maintenanceRequests" ToRole="maintenanceInvoices" />
+          <NavigationProperty Name="maintenanceType" Relationship="Self.FK_maintenanceRequests_maintenanceTypes" FromRole="maintenanceRequests" ToRole="maintenanceTypes" />
+        </EntityType>
+        <EntityType Name="maintenanceType">
+          <Key>
+            <PropertyRef Name="maintenanceTypeId" />
+          </Key>
+          <Property Name="maintenanceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="maintenanceRequests" Relationship="Self.FK_maintenanceRequests_maintenanceTypes" FromRole="maintenanceTypes" ToRole="maintenanceRequests" />
+        </EntityType>
+        <EntityType Name="paymeny">
+          <Key>
+            <PropertyRef Name="paymentId" />
+          </Key>
+          <Property Name="paymentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contractId" Type="Int64" />
+          <Property Name="collected" Type="Boolean" />
+          <Property Name="collectedOn" Type="DateTime" Precision="3" />
+          <Property Name="deposited" Type="Boolean" />
+          <Property Name="depositedOn" Type="DateTime" Precision="3" />
+          <Property Name="cleared" Type="Boolean" />
+          <Property Name="clearedOn" Type="DateTime" Precision="3" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="contract" Relationship="Self.FK_paymenys_contracts" FromRole="paymenys" ToRole="contracts" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="usageType">
+          <Key>
+            <PropertyRef Name="usageTypeId" />
+          </Key>
+          <Property Name="usageTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="housingUnits" Relationship="Self.FK_housingUnits_usageTypes" FromRole="usageTypes" ToRole="housingUnits" />
+        </EntityType>
+        <Association Name="FK_adminFees_adminFeesDefinition">
+          <End Role="adminFeesDefinition" Type="Self.adminFeesDefinition" Multiplicity="0..1" />
+          <End Role="adminFees" Type="Self.adminFee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adminFeesDefinition">
+              <PropertyRef Name="adminFeeDefinitionId" />
+            </Principal>
+            <Dependent Role="adminFees">
+              <PropertyRef Name="adminFeeDefinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminFees_contracts">
+          <End Role="contracts" Type="Self.contract" Multiplicity="0..1" />
+          <End Role="adminFees" Type="Self.adminFee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="adminFees">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assets_assetTypes">
+          <End Role="assetTypes" Type="Self.assetType" Multiplicity="0..1" />
+          <End Role="assets" Type="Self.asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="assetTypes">
+              <PropertyRef Name="assetTypeId" />
+            </Principal>
+            <Dependent Role="assets">
+              <PropertyRef Name="assetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assets_contracts">
+          <End Role="contracts" Type="Self.contract" Multiplicity="0..1" />
+          <End Role="assets" Type="Self.asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="assets">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListAssets_assets">
+          <End Role="assets" Type="Self.asset" Multiplicity="0..1" />
+          <End Role="checkListAssets" Type="Self.checkListAsset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="assets">
+              <PropertyRef Name="assetId" />
+            </Principal>
+            <Dependent Role="checkListAssets">
+              <PropertyRef Name="assetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListAssets_checkListReports">
+          <End Role="checkListReports" Type="Self.checkListReport" Multiplicity="0..1" />
+          <End Role="checkListAssets" Type="Self.checkListAsset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checkListReports">
+              <PropertyRef Name="checkListReportId" />
+            </Principal>
+            <Dependent Role="checkListAssets">
+              <PropertyRef Name="checkListReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListReportData_checkListReportDefinitions">
+          <End Role="checkListReportDefinitions" Type="Self.checkListReportDefinition" Multiplicity="0..1" />
+          <End Role="checkListReportData" Type="Self.checkListReportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checkListReportDefinitions">
+              <PropertyRef Name="checkListItemId" />
+            </Principal>
+            <Dependent Role="checkListReportData">
+              <PropertyRef Name="reportDifinitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_checkListReportData_checkListReports">
+          <End Role="checkListReports" Type="Self.checkListReport" Multiplicity="0..1" />
+          <End Role="checkListReportData" Type="Self.checkListReportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="checkListReports">
+              <PropertyRef Name="checkListReportId" />
+            </Principal>
+            <Dependent Role="checkListReportData">
+              <PropertyRef Name="checkListReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contracts_contractTypes">
+          <End Role="contractTypes" Type="Self.contractType" Multiplicity="0..1" />
+          <End Role="contracts" Type="Self.contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contractTypes">
+              <PropertyRef Name="contractTypeId" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="contractTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymenys_contracts">
+          <End Role="contracts" Type="Self.contract" Multiplicity="0..1" />
+          <End Role="paymenys" Type="Self.paymeny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="paymenys">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_housingUnits_housingUnitTypes">
+          <End Role="housingUnitTypes" Type="Self.housingUnitType" Multiplicity="0..1" />
+          <End Role="housingUnits" Type="Self.housingUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="housingUnitTypes">
+              <PropertyRef Name="housingUnitTypeId" />
+            </Principal>
+            <Dependent Role="housingUnits">
+              <PropertyRef Name="housingUnitTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_housingUnits_usageTypes">
+          <End Role="usageTypes" Type="Self.usageType" Multiplicity="0..1" />
+          <End Role="housingUnits" Type="Self.housingUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usageTypes">
+              <PropertyRef Name="usageTypeId" />
+            </Principal>
+            <Dependent Role="housingUnits">
+              <PropertyRef Name="usageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maintenanceRequests_housingUnits">
+          <End Role="housingUnits" Type="Self.housingUnit" Multiplicity="0..1" />
+          <End Role="maintenanceRequests" Type="Self.maintenanceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="housingUnits">
+              <PropertyRef Name="housingUnitId" />
+            </Principal>
+            <Dependent Role="maintenanceRequests">
+              <PropertyRef Name="housingUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maintenanceInvoices_maintenanceRequests">
+          <End Role="maintenanceRequests" Type="Self.maintenanceRequest" Multiplicity="0..1" />
+          <End Role="maintenanceInvoices" Type="Self.maintenanceInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maintenanceRequests">
+              <PropertyRef Name="maintenanceRequestId" />
+            </Principal>
+            <Dependent Role="maintenanceInvoices">
+              <PropertyRef Name="maintenanceRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maintenanceRequests_maintenanceTypes">
+          <End Role="maintenanceTypes" Type="Self.maintenanceType" Multiplicity="0..1" />
+          <End Role="maintenanceRequests" Type="Self.maintenanceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maintenanceTypes">
+              <PropertyRef Name="maintenanceTypeId" />
+            </Principal>
+            <Dependent Role="maintenanceRequests">
+              <PropertyRef Name="maintenanceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="realStateDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adminFees" EntityType="Self.adminFee" />
+          <EntitySet Name="adminFeesDefinitions" EntityType="Self.adminFeesDefinition" />
+          <EntitySet Name="assets" EntityType="Self.asset" />
+          <EntitySet Name="assetTypes" EntityType="Self.assetType" />
+          <EntitySet Name="checkListAssets" EntityType="Self.checkListAsset" />
+          <EntitySet Name="checkListReportDatas" EntityType="Self.checkListReportData" />
+          <EntitySet Name="checkListReportDefinitions" EntityType="Self.checkListReportDefinition" />
+          <EntitySet Name="checkListReports" EntityType="Self.checkListReport" />
+          <EntitySet Name="contracts" EntityType="Self.contract" />
+          <EntitySet Name="contractTypes" EntityType="Self.contractType" />
+          <EntitySet Name="DMS" EntityType="Self.DM" />
+          <EntitySet Name="housingUnits" EntityType="Self.housingUnit" />
+          <EntitySet Name="housingUnitTypes" EntityType="Self.housingUnitType" />
+          <EntitySet Name="maintenanceInvoices" EntityType="Self.maintenanceInvoice" />
+          <EntitySet Name="maintenanceRequests" EntityType="Self.maintenanceRequest" />
+          <EntitySet Name="maintenanceTypes" EntityType="Self.maintenanceType" />
+          <EntitySet Name="paymenys" EntityType="Self.paymeny" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="usageTypes" EntityType="Self.usageType" />
+          <AssociationSet Name="FK_adminFees_adminFeesDefinition" Association="Self.FK_adminFees_adminFeesDefinition">
+            <End Role="adminFeesDefinition" EntitySet="adminFeesDefinitions" />
+            <End Role="adminFees" EntitySet="adminFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminFees_contracts" Association="Self.FK_adminFees_contracts">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="adminFees" EntitySet="adminFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assets_assetTypes" Association="Self.FK_assets_assetTypes">
+            <End Role="assetTypes" EntitySet="assetTypes" />
+            <End Role="assets" EntitySet="assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assets_contracts" Association="Self.FK_assets_contracts">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="assets" EntitySet="assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListAssets_assets" Association="Self.FK_checkListAssets_assets">
+            <End Role="assets" EntitySet="assets" />
+            <End Role="checkListAssets" EntitySet="checkListAssets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListAssets_checkListReports" Association="Self.FK_checkListAssets_checkListReports">
+            <End Role="checkListReports" EntitySet="checkListReports" />
+            <End Role="checkListAssets" EntitySet="checkListAssets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListReportData_checkListReportDefinitions" Association="Self.FK_checkListReportData_checkListReportDefinitions">
+            <End Role="checkListReportDefinitions" EntitySet="checkListReportDefinitions" />
+            <End Role="checkListReportData" EntitySet="checkListReportDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_checkListReportData_checkListReports" Association="Self.FK_checkListReportData_checkListReports">
+            <End Role="checkListReports" EntitySet="checkListReports" />
+            <End Role="checkListReportData" EntitySet="checkListReportDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contracts_contractTypes" Association="Self.FK_contracts_contractTypes">
+            <End Role="contractTypes" EntitySet="contractTypes" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymenys_contracts" Association="Self.FK_paymenys_contracts">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="paymenys" EntitySet="paymenys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_housingUnits_housingUnitTypes" Association="Self.FK_housingUnits_housingUnitTypes">
+            <End Role="housingUnitTypes" EntitySet="housingUnitTypes" />
+            <End Role="housingUnits" EntitySet="housingUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_housingUnits_usageTypes" Association="Self.FK_housingUnits_usageTypes">
+            <End Role="usageTypes" EntitySet="usageTypes" />
+            <End Role="housingUnits" EntitySet="housingUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maintenanceRequests_housingUnits" Association="Self.FK_maintenanceRequests_housingUnits">
+            <End Role="housingUnits" EntitySet="housingUnits" />
+            <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maintenanceInvoices_maintenanceRequests" Association="Self.FK_maintenanceInvoices_maintenanceRequests">
+            <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+            <End Role="maintenanceInvoices" EntitySet="maintenanceInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maintenanceRequests_maintenanceTypes" Association="Self.FK_maintenanceRequests_maintenanceTypes">
+            <End Role="maintenanceTypes" EntitySet="maintenanceTypes" />
+            <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="realStateDBModelStoreContainer" CdmEntityContainer="realStateDBEntities">
+          <EntitySetMapping Name="adminFees">
+            <EntityTypeMapping TypeName="realStateDBModel.adminFee">
+              <MappingFragment StoreEntitySet="adminFees">
+                <ScalarProperty Name="adminFeeid" ColumnName="adminFeeid" />
+                <ScalarProperty Name="adminFeeDefinitionId" ColumnName="adminFeeDefinitionId" />
+                <ScalarProperty Name="adminFeeDescription" ColumnName="adminFeeDescription" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="percentageValue" ColumnName="percentageValue" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminFeesDefinitions">
+            <EntityTypeMapping TypeName="realStateDBModel.adminFeesDefinition">
+              <MappingFragment StoreEntitySet="adminFeesDefinition">
+                <ScalarProperty Name="adminFeeDefinitionId" ColumnName="adminFeeDefinitionId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assets">
+            <EntityTypeMapping TypeName="realStateDBModel.asset">
+              <MappingFragment StoreEntitySet="assets">
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="assetTypeId" ColumnName="assetTypeId" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="serialNo" ColumnName="serialNo" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="givenOn" ColumnName="givenOn" />
+                <ScalarProperty Name="takenOn" ColumnName="takenOn" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assetTypes">
+            <EntityTypeMapping TypeName="realStateDBModel.assetType">
+              <MappingFragment StoreEntitySet="assetTypes">
+                <ScalarProperty Name="assetTypeId" ColumnName="assetTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checkListAssets">
+            <EntityTypeMapping TypeName="realStateDBModel.checkListAsset">
+              <MappingFragment StoreEntitySet="checkListAssets">
+                <ScalarProperty Name="checkListAssetId" ColumnName="checkListAssetId" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="checkListReportId" ColumnName="checkListReportId" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checkListReportDatas">
+            <EntityTypeMapping TypeName="realStateDBModel.checkListReportData">
+              <MappingFragment StoreEntitySet="checkListReportData">
+                <ScalarProperty Name="checkListReportDataId" ColumnName="checkListReportDataId" />
+                <ScalarProperty Name="checkListReportId" ColumnName="checkListReportId" />
+                <ScalarProperty Name="reportDifinitionId" ColumnName="reportDifinitionId" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checkListReportDefinitions">
+            <EntityTypeMapping TypeName="realStateDBModel.checkListReportDefinition">
+              <MappingFragment StoreEntitySet="checkListReportDefinitions">
+                <ScalarProperty Name="checkListItemId" ColumnName="checkListItemId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checkListReports">
+            <EntityTypeMapping TypeName="realStateDBModel.checkListReport">
+              <MappingFragment StoreEntitySet="checkListReports">
+                <ScalarProperty Name="checkListReportId" ColumnName="checkListReportId" />
+                <ScalarProperty Name="reportDate" ColumnName="reportDate" />
+                <ScalarProperty Name="performedBy" ColumnName="performedBy" />
+                <ScalarProperty Name="waterAndElectricityCleared" ColumnName="waterAndElectricityCleared" />
+                <ScalarProperty Name="accepted" ColumnName="accepted" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contracts">
+            <EntityTypeMapping TypeName="realStateDBModel.contract">
+              <MappingFragment StoreEntitySet="contracts">
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="housingUnitId" ColumnName="housingUnitId" />
+                <ScalarProperty Name="contractNumber" ColumnName="contractNumber" />
+                <ScalarProperty Name="locationReference" ColumnName="locationReference" />
+                <ScalarProperty Name="contractTypeId" ColumnName="contractTypeId" />
+                <ScalarProperty Name="tenantName" ColumnName="tenantName" />
+                <ScalarProperty Name="emiratesId" ColumnName="emiratesId" />
+                <ScalarProperty Name="emiratesIdExpire" ColumnName="emiratesIdExpire" />
+                <ScalarProperty Name="passportNumber" ColumnName="passportNumber" />
+                <ScalarProperty Name="passportExpire" ColumnName="passportExpire" />
+                <ScalarProperty Name="contactNumber1" ColumnName="contactNumber1" />
+                <ScalarProperty Name="contactNumber2" ColumnName="contactNumber2" />
+                <ScalarProperty Name="POBox" ColumnName="POBox" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="rentValue" ColumnName="rentValue" />
+                <ScalarProperty Name="NoOfPayments" ColumnName="NoOfPayments" />
+                <ScalarProperty Name="familyMembers" ColumnName="familyMembers" />
+                <ScalarProperty Name="familyMembersDescription" ColumnName="familyMembersDescription" />
+                <ScalarProperty Name="insuranceDeposit" ColumnName="insuranceDeposit" />
+                <ScalarProperty Name="insuranceDeduction" ColumnName="insuranceDeduction" />
+                <ScalarProperty Name="insuranceRefunded" ColumnName="insuranceRefunded" />
+                <ScalarProperty Name="insuranceDeductionDescription" ColumnName="insuranceDeductionDescription" />
+                <ScalarProperty Name="insuranceRefundReceivedBy" ColumnName="insuranceRefundReceivedBy" />
+                <ScalarProperty Name="checkListReportReceived" ColumnName="checkListReportReceived" />
+                <ScalarProperty Name="isHolded" ColumnName="isHolded" />
+                <ScalarProperty Name="holdedBy" ColumnName="holdedBy" />
+                <ScalarProperty Name="isRenewed" ColumnName="isRenewed" />
+                <ScalarProperty Name="isEnded" ColumnName="isEnded" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contractTypes">
+            <EntityTypeMapping TypeName="realStateDBModel.contractType">
+              <MappingFragment StoreEntitySet="contractTypes">
+                <ScalarProperty Name="contractTypeId" ColumnName="contractTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DMS">
+            <EntityTypeMapping TypeName="realStateDBModel.DM">
+              <MappingFragment StoreEntitySet="DMS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="uploadDatetime" ColumnName="uploadDatetime" />
+                <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+                <ScalarProperty Name="systemCode" ColumnName="systemCode" />
+                <ScalarProperty Name="systemReferenceId" ColumnName="systemReferenceId" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="fileContent" ColumnName="fileContent" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="housingUnits">
+            <EntityTypeMapping TypeName="realStateDBModel.housingUnit">
+              <MappingFragment StoreEntitySet="housingUnits">
+                <ScalarProperty Name="housingUnitId" ColumnName="housingUnitId" />
+                <ScalarProperty Name="housingUnitTypeId" ColumnName="housingUnitTypeId" />
+                <ScalarProperty Name="usageTypeId" ColumnName="usageTypeId" />
+                <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="emirate" ColumnName="emirate" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="tawtheeqId" ColumnName="tawtheeqId" />
+                <ScalarProperty Name="zone" ColumnName="zone" />
+                <ScalarProperty Name="sector" ColumnName="sector" />
+                <ScalarProperty Name="plot" ColumnName="plot" />
+                <ScalarProperty Name="ownerName" ColumnName="ownerName" />
+                <ScalarProperty Name="areaSize" ColumnName="areaSize" />
+                <ScalarProperty Name="parent" ColumnName="parent" />
+                <ScalarProperty Name="treeLevel" ColumnName="treeLevel" />
+                <ScalarProperty Name="vacant" ColumnName="vacant" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="subjectToRent" ColumnName="subjectToRent" />
+                <ScalarProperty Name="hasSubUnits" ColumnName="hasSubUnits" />
+                <ScalarProperty Name="treePath" ColumnName="treePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="housingUnitTypes">
+            <EntityTypeMapping TypeName="realStateDBModel.housingUnitType">
+              <MappingFragment StoreEntitySet="housingUnitTypes">
+                <ScalarProperty Name="housingUnitTypeId" ColumnName="housingUnitTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maintenanceInvoices">
+            <EntityTypeMapping TypeName="realStateDBModel.maintenanceInvoice">
+              <MappingFragment StoreEntitySet="maintenanceInvoices">
+                <ScalarProperty Name="maintenanceInvoiceId" ColumnName="maintenanceInvoiceId" />
+                <ScalarProperty Name="maintenanceRequestId" ColumnName="maintenanceRequestId" />
+                <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+                <ScalarProperty Name="invoiceDate" ColumnName="invoiceDate" />
+                <ScalarProperty Name="invoiceValue" ColumnName="invoiceValue" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maintenanceRequests">
+            <EntityTypeMapping TypeName="realStateDBModel.maintenanceRequest">
+              <MappingFragment StoreEntitySet="maintenanceRequests">
+                <ScalarProperty Name="maintenanceRequestId" ColumnName="maintenanceRequestId" />
+                <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+                <ScalarProperty Name="maintenanceTypeId" ColumnName="maintenanceTypeId" />
+                <ScalarProperty Name="requestedBy" ColumnName="requestedBy" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="housingUnitId" ColumnName="housingUnitId" />
+                <ScalarProperty Name="reported" ColumnName="reported" />
+                <ScalarProperty Name="reportingDate" ColumnName="reportingDate" />
+                <ScalarProperty Name="reportedTo" ColumnName="reportedTo" />
+                <ScalarProperty Name="resolved" ColumnName="resolved" />
+                <ScalarProperty Name="resolveDate" ColumnName="resolveDate" />
+                <ScalarProperty Name="resolvedBy" ColumnName="resolvedBy" />
+                <ScalarProperty Name="problemDescription" ColumnName="problemDescription" />
+                <ScalarProperty Name="resolutionDescription" ColumnName="resolutionDescription" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maintenanceTypes">
+            <EntityTypeMapping TypeName="realStateDBModel.maintenanceType">
+              <MappingFragment StoreEntitySet="maintenanceTypes">
+                <ScalarProperty Name="maintenanceTypeId" ColumnName="maintenanceTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymenys">
+            <EntityTypeMapping TypeName="realStateDBModel.paymeny">
+              <MappingFragment StoreEntitySet="paymenys">
+                <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="collected" ColumnName="collected" />
+                <ScalarProperty Name="collectedOn" ColumnName="collectedOn" />
+                <ScalarProperty Name="deposited" ColumnName="deposited" />
+                <ScalarProperty Name="depositedOn" ColumnName="depositedOn" />
+                <ScalarProperty Name="cleared" ColumnName="cleared" />
+                <ScalarProperty Name="clearedOn" ColumnName="clearedOn" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="realStateDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usageTypes">
+            <EntityTypeMapping TypeName="realStateDBModel.usageType">
+              <MappingFragment StoreEntitySet="usageTypes">
+                <ScalarProperty Name="usageTypeId" ColumnName="usageTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

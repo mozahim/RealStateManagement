@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="realStateDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="adminFee">
+    <Key>
+      <PropertyRef Name="adminFeeid" />
+    </Key>
+    <Property Name="adminFeeid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adminFeeDefinitionId" Type="Int32" />
+    <Property Name="adminFeeDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="contractId" Type="Int64" />
+    <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="percentageValue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="adminFeesDefinition" Relationship="Self.FK_adminFees_adminFeesDefinition" FromRole="adminFees" ToRole="adminFeesDefinition" />
+    <NavigationProperty Name="contract" Relationship="Self.FK_adminFees_contracts" FromRole="adminFees" ToRole="contracts" />
+  </EntityType>
+  <EntityType Name="adminFeesDefinition">
+    <Key>
+      <PropertyRef Name="adminFeeDefinitionId" />
+    </Key>
+    <Property Name="adminFeeDefinitionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="percentage" Type="Int32" />
+    <NavigationProperty Name="adminFees" Relationship="Self.FK_adminFees_adminFeesDefinition" FromRole="adminFeesDefinition" ToRole="adminFees" />
+  </EntityType>
+  <EntityType Name="asset">
+    <Key>
+      <PropertyRef Name="assetId" />
+    </Key>
+    <Property Name="assetId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="assetTypeId" Type="Int32" />
+    <Property Name="contractId" Type="Int64" />
+    <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="serialNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="givenOn" Type="DateTime" Precision="3" />
+    <Property Name="takenOn" Type="DateTime" Precision="3" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="assetType" Relationship="Self.FK_assets_assetTypes" FromRole="assets" ToRole="assetTypes" />
+    <NavigationProperty Name="contract" Relationship="Self.FK_assets_contracts" FromRole="assets" ToRole="contracts" />
+    <NavigationProperty Name="checkListAssets" Relationship="Self.FK_checkListAssets_assets" FromRole="assets" ToRole="checkListAssets" />
+  </EntityType>
+  <EntityType Name="assetType">
+    <Key>
+      <PropertyRef Name="assetTypeId" />
+    </Key>
+    <Property Name="assetTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="assets" Relationship="Self.FK_assets_assetTypes" FromRole="assetTypes" ToRole="assets" />
+  </EntityType>
+  <EntityType Name="checkListAsset">
+    <Key>
+      <PropertyRef Name="checkListAssetId" />
+    </Key>
+    <Property Name="checkListAssetId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="assetId" Type="Int64" />
+    <Property Name="checkListReportId" Type="Int64" />
+    <Property Name="condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="asset" Relationship="Self.FK_checkListAssets_assets" FromRole="checkListAssets" ToRole="assets" />
+    <NavigationProperty Name="checkListReport" Relationship="Self.FK_checkListAssets_checkListReports" FromRole="checkListAssets" ToRole="checkListReports" />
+  </EntityType>
+  <EntityType Name="checkListReportData">
+    <Key>
+      <PropertyRef Name="checkListReportDataId" />
+    </Key>
+    <Property Name="checkListReportDataId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="checkListReportId" Type="Int64" />
+    <Property Name="reportDifinitionId" Type="Int32" />
+    <Property Name="condition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="checkListReportDefinition" Relationship="Self.FK_checkListReportData_checkListReportDefinitions" FromRole="checkListReportData" ToRole="checkListReportDefinitions" />
+    <NavigationProperty Name="checkListReport" Relationship="Self.FK_checkListReportData_checkListReports" FromRole="checkListReportData" ToRole="checkListReports" />
+  </EntityType>
+  <EntityType Name="checkListReportDefinition">
+    <Key>
+      <PropertyRef Name="checkListItemId" />
+    </Key>
+    <Property Name="checkListItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="checkListReportDatas" Relationship="Self.FK_checkListReportData_checkListReportDefinitions" FromRole="checkListReportDefinitions" ToRole="checkListReportData" />
+  </EntityType>
+  <EntityType Name="checkListReport">
+    <Key>
+      <PropertyRef Name="checkListReportId" />
+    </Key>
+    <Property Name="checkListReportId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reportDate" Type="DateTime" Precision="3" />
+    <Property Name="performedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="waterAndElectricityCleared" Type="Boolean" />
+    <Property Name="accepted" Type="Boolean" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <Property Name="contractId" Type="Int64" />
+    <NavigationProperty Name="checkListAssets" Relationship="Self.FK_checkListAssets_checkListReports" FromRole="checkListReports" ToRole="checkListAssets" />
+    <NavigationProperty Name="checkListReportDatas" Relationship="Self.FK_checkListReportData_checkListReports" FromRole="checkListReports" ToRole="checkListReportData" />
+  </EntityType>
+  <EntityType Name="contract">
+    <Key>
+      <PropertyRef Name="contractId" />
+    </Key>
+    <Property Name="contractId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="housingUnitId" Type="Int64" />
+    <Property Name="contractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="locationReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contractTypeId" Type="Int32" />
+    <Property Name="tenantName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="emiratesId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="emiratesIdExpire" Type="DateTime" Precision="3" />
+    <Property Name="passportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="passportExpire" Type="DateTime" Precision="3" />
+    <Property Name="contactNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contactNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="POBox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="startDate" Type="DateTime" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Precision="0" />
+    <Property Name="rentValue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="NoOfPayments" Type="Int32" />
+    <Property Name="familyMembers" Type="Int32" />
+    <Property Name="familyMembersDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="insuranceDeposit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="insuranceDeduction" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="insuranceRefunded" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="insuranceDeductionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="insuranceRefundReceivedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="checkListReportReceived" Type="Boolean" />
+    <Property Name="isHolded" Type="Boolean" />
+    <Property Name="holdedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isRenewed" Type="Boolean" />
+    <Property Name="isEnded" Type="Boolean" />
+    <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="adminFees" Relationship="Self.FK_adminFees_contracts" FromRole="contracts" ToRole="adminFees" />
+    <NavigationProperty Name="assets" Relationship="Self.FK_assets_contracts" FromRole="contracts" ToRole="assets" />
+    <NavigationProperty Name="contractType" Relationship="Self.FK_contracts_contractTypes" FromRole="contracts" ToRole="contractTypes" />
+    <NavigationProperty Name="paymenys" Relationship="Self.FK_paymenys_contracts" FromRole="contracts" ToRole="paymenys" />
+  </EntityType>
+  <EntityType Name="contractType">
+    <Key>
+      <PropertyRef Name="contractTypeId" />
+    </Key>
+    <Property Name="contractTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="contracts" Relationship="Self.FK_contracts_contractTypes" FromRole="contractTypes" ToRole="contracts" />
+  </EntityType>
+  <EntityType Name="DM">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uploadDatetime" Type="DateTime" Precision="3" />
+    <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="systemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="systemReferenceId" Type="Int64" />
+    <Property Name="fileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="housingUnit">
+    <Key>
+      <PropertyRef Name="housingUnitId" />
+    </Key>
+    <Property Name="housingUnitId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="housingUnitTypeId" Type="Int32" />
+    <Property Name="usageTypeId" Type="Int32" />
+    <Property Name="UnitNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emirate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="tawtheeqId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="zone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="plot" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ownerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="areaSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="parent" Type="Int64" />
+    <Property Name="treeLevel" Type="Int32" />
+    <Property Name="vacant" Type="Boolean" />
+    <Property Name="active" Type="Boolean" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="subjectToRent" Type="Boolean" />
+    <Property Name="hasSubUnits" Type="Boolean" />
+    <Property Name="treePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="housingUnitType" Relationship="Self.FK_housingUnits_housingUnitTypes" FromRole="housingUnits" ToRole="housingUnitTypes" />
+    <NavigationProperty Name="usageType" Relationship="Self.FK_housingUnits_usageTypes" FromRole="housingUnits" ToRole="usageTypes" />
+    <NavigationProperty Name="maintenanceRequests" Relationship="Self.FK_maintenanceRequests_housingUnits" FromRole="housingUnits" ToRole="maintenanceRequests" />
+  </EntityType>
+  <EntityType Name="housingUnitType">
+    <Key>
+      <PropertyRef Name="housingUnitTypeId" />
+    </Key>
+    <Property Name="housingUnitTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="housingUnits" Relationship="Self.FK_housingUnits_housingUnitTypes" FromRole="housingUnitTypes" ToRole="housingUnits" />
+  </EntityType>
+  <EntityType Name="maintenanceInvoice">
+    <Key>
+      <PropertyRef Name="maintenanceInvoiceId" />
+    </Key>
+    <Property Name="maintenanceInvoiceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maintenanceRequestId" Type="Int64" />
+    <Property Name="invoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoiceDate" Type="DateTime" Precision="0" />
+    <Property Name="invoiceValue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="maintenanceRequest" Relationship="Self.FK_maintenanceInvoices_maintenanceRequests" FromRole="maintenanceInvoices" ToRole="maintenanceRequests" />
+  </EntityType>
+  <EntityType Name="maintenanceRequest">
+    <Key>
+      <PropertyRef Name="maintenanceRequestId" />
+    </Key>
+    <Property Name="maintenanceRequestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="requestDate" Type="DateTime" Precision="3" />
+    <Property Name="maintenanceTypeId" Type="Int32" />
+    <Property Name="requestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="housingUnitId" Type="Int64" />
+    <Property Name="reported" Type="Boolean" />
+    <Property Name="reportingDate" Type="DateTime" Precision="3" />
+    <Property Name="reportedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="resolved" Type="Boolean" />
+    <Property Name="resolveDate" Type="DateTime" Precision="3" />
+    <Property Name="resolvedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="problemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resolutionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="housingUnit" Relationship="Self.FK_maintenanceRequests_housingUnits" FromRole="maintenanceRequests" ToRole="housingUnits" />
+    <NavigationProperty Name="maintenanceInvoices" Relationship="Self.FK_maintenanceInvoices_maintenanceRequests" FromRole="maintenanceRequests" ToRole="maintenanceInvoices" />
+    <NavigationProperty Name="maintenanceType" Relationship="Self.FK_maintenanceRequests_maintenanceTypes" FromRole="maintenanceRequests" ToRole="maintenanceTypes" />
+  </EntityType>
+  <EntityType Name="maintenanceType">
+    <Key>
+      <PropertyRef Name="maintenanceTypeId" />
+    </Key>
+    <Property Name="maintenanceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="maintenanceRequests" Relationship="Self.FK_maintenanceRequests_maintenanceTypes" FromRole="maintenanceTypes" ToRole="maintenanceRequests" />
+  </EntityType>
+  <EntityType Name="paymeny">
+    <Key>
+      <PropertyRef Name="paymentId" />
+    </Key>
+    <Property Name="paymentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contractId" Type="Int64" />
+    <Property Name="collected" Type="Boolean" />
+    <Property Name="collectedOn" Type="DateTime" Precision="3" />
+    <Property Name="deposited" Type="Boolean" />
+    <Property Name="depositedOn" Type="DateTime" Precision="3" />
+    <Property Name="cleared" Type="Boolean" />
+    <Property Name="clearedOn" Type="DateTime" Precision="3" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="contract" Relationship="Self.FK_paymenys_contracts" FromRole="paymenys" ToRole="contracts" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="usageType">
+    <Key>
+      <PropertyRef Name="usageTypeId" />
+    </Key>
+    <Property Name="usageTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="housingUnits" Relationship="Self.FK_housingUnits_usageTypes" FromRole="usageTypes" ToRole="housingUnits" />
+  </EntityType>
+  <Association Name="FK_adminFees_adminFeesDefinition">
+    <End Role="adminFeesDefinition" Type="Self.adminFeesDefinition" Multiplicity="0..1" />
+    <End Role="adminFees" Type="Self.adminFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="adminFeesDefinition">
+        <PropertyRef Name="adminFeeDefinitionId" />
+      </Principal>
+      <Dependent Role="adminFees">
+        <PropertyRef Name="adminFeeDefinitionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_adminFees_contracts">
+    <End Role="contracts" Type="Self.contract" Multiplicity="0..1" />
+    <End Role="adminFees" Type="Self.adminFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contracts">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="adminFees">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assets_assetTypes">
+    <End Role="assetTypes" Type="Self.assetType" Multiplicity="0..1" />
+    <End Role="assets" Type="Self.asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="assetTypes">
+        <PropertyRef Name="assetTypeId" />
+      </Principal>
+      <Dependent Role="assets">
+        <PropertyRef Name="assetTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_assets_contracts">
+    <End Role="contracts" Type="Self.contract" Multiplicity="0..1" />
+    <End Role="assets" Type="Self.asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contracts">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="assets">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_checkListAssets_assets">
+    <End Role="assets" Type="Self.asset" Multiplicity="0..1" />
+    <End Role="checkListAssets" Type="Self.checkListAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="assets">
+        <PropertyRef Name="assetId" />
+      </Principal>
+      <Dependent Role="checkListAssets">
+        <PropertyRef Name="assetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_checkListAssets_checkListReports">
+    <End Role="checkListReports" Type="Self.checkListReport" Multiplicity="0..1" />
+    <End Role="checkListAssets" Type="Self.checkListAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="checkListReports">
+        <PropertyRef Name="checkListReportId" />
+      </Principal>
+      <Dependent Role="checkListAssets">
+        <PropertyRef Name="checkListReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_checkListReportData_checkListReportDefinitions">
+    <End Role="checkListReportDefinitions" Type="Self.checkListReportDefinition" Multiplicity="0..1" />
+    <End Role="checkListReportData" Type="Self.checkListReportData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="checkListReportDefinitions">
+        <PropertyRef Name="checkListItemId" />
+      </Principal>
+      <Dependent Role="checkListReportData">
+        <PropertyRef Name="reportDifinitionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_checkListReportData_checkListReports">
+    <End Role="checkListReports" Type="Self.checkListReport" Multiplicity="0..1" />
+    <End Role="checkListReportData" Type="Self.checkListReportData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="checkListReports">
+        <PropertyRef Name="checkListReportId" />
+      </Principal>
+      <Dependent Role="checkListReportData">
+        <PropertyRef Name="checkListReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contracts_contractTypes">
+    <End Role="contractTypes" Type="Self.contractType" Multiplicity="0..1" />
+    <End Role="contracts" Type="Self.contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contractTypes">
+        <PropertyRef Name="contractTypeId" />
+      </Principal>
+      <Dependent Role="contracts">
+        <PropertyRef Name="contractTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_paymenys_contracts">
+    <End Role="contracts" Type="Self.contract" Multiplicity="0..1" />
+    <End Role="paymenys" Type="Self.paymeny" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contracts">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="paymenys">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_housingUnits_housingUnitTypes">
+    <End Role="housingUnitTypes" Type="Self.housingUnitType" Multiplicity="0..1" />
+    <End Role="housingUnits" Type="Self.housingUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="housingUnitTypes">
+        <PropertyRef Name="housingUnitTypeId" />
+      </Principal>
+      <Dependent Role="housingUnits">
+        <PropertyRef Name="housingUnitTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_housingUnits_usageTypes">
+    <End Role="usageTypes" Type="Self.usageType" Multiplicity="0..1" />
+    <End Role="housingUnits" Type="Self.housingUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usageTypes">
+        <PropertyRef Name="usageTypeId" />
+      </Principal>
+      <Dependent Role="housingUnits">
+        <PropertyRef Name="usageTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_maintenanceRequests_housingUnits">
+    <End Role="housingUnits" Type="Self.housingUnit" Multiplicity="0..1" />
+    <End Role="maintenanceRequests" Type="Self.maintenanceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="housingUnits">
+        <PropertyRef Name="housingUnitId" />
+      </Principal>
+      <Dependent Role="maintenanceRequests">
+        <PropertyRef Name="housingUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_maintenanceInvoices_maintenanceRequests">
+    <End Role="maintenanceRequests" Type="Self.maintenanceRequest" Multiplicity="0..1" />
+    <End Role="maintenanceInvoices" Type="Self.maintenanceInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="maintenanceRequests">
+        <PropertyRef Name="maintenanceRequestId" />
+      </Principal>
+      <Dependent Role="maintenanceInvoices">
+        <PropertyRef Name="maintenanceRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_maintenanceRequests_maintenanceTypes">
+    <End Role="maintenanceTypes" Type="Self.maintenanceType" Multiplicity="0..1" />
+    <End Role="maintenanceRequests" Type="Self.maintenanceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="maintenanceTypes">
+        <PropertyRef Name="maintenanceTypeId" />
+      </Principal>
+      <Dependent Role="maintenanceRequests">
+        <PropertyRef Name="maintenanceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="realStateDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="adminFees" EntityType="Self.adminFee" />
+    <EntitySet Name="adminFeesDefinitions" EntityType="Self.adminFeesDefinition" />
+    <EntitySet Name="assets" EntityType="Self.asset" />
+    <EntitySet Name="assetTypes" EntityType="Self.assetType" />
+    <EntitySet Name="checkListAssets" EntityType="Self.checkListAsset" />
+    <EntitySet Name="checkListReportDatas" EntityType="Self.checkListReportData" />
+    <EntitySet Name="checkListReportDefinitions" EntityType="Self.checkListReportDefinition" />
+    <EntitySet Name="checkListReports" EntityType="Self.checkListReport" />
+    <EntitySet Name="contracts" EntityType="Self.contract" />
+    <EntitySet Name="contractTypes" EntityType="Self.contractType" />
+    <EntitySet Name="DMS" EntityType="Self.DM" />
+    <EntitySet Name="housingUnits" EntityType="Self.housingUnit" />
+    <EntitySet Name="housingUnitTypes" EntityType="Self.housingUnitType" />
+    <EntitySet Name="maintenanceInvoices" EntityType="Self.maintenanceInvoice" />
+    <EntitySet Name="maintenanceRequests" EntityType="Self.maintenanceRequest" />
+    <EntitySet Name="maintenanceTypes" EntityType="Self.maintenanceType" />
+    <EntitySet Name="paymenys" EntityType="Self.paymeny" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="usageTypes" EntityType="Self.usageType" />
+    <AssociationSet Name="FK_adminFees_adminFeesDefinition" Association="Self.FK_adminFees_adminFeesDefinition">
+      <End Role="adminFeesDefinition" EntitySet="adminFeesDefinitions" />
+      <End Role="adminFees" EntitySet="adminFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_adminFees_contracts" Association="Self.FK_adminFees_contracts">
+      <End Role="contracts" EntitySet="contracts" />
+      <End Role="adminFees" EntitySet="adminFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assets_assetTypes" Association="Self.FK_assets_assetTypes">
+      <End Role="assetTypes" EntitySet="assetTypes" />
+      <End Role="assets" EntitySet="assets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_assets_contracts" Association="Self.FK_assets_contracts">
+      <End Role="contracts" EntitySet="contracts" />
+      <End Role="assets" EntitySet="assets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_checkListAssets_assets" Association="Self.FK_checkListAssets_assets">
+      <End Role="assets" EntitySet="assets" />
+      <End Role="checkListAssets" EntitySet="checkListAssets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_checkListAssets_checkListReports" Association="Self.FK_checkListAssets_checkListReports">
+      <End Role="checkListReports" EntitySet="checkListReports" />
+      <End Role="checkListAssets" EntitySet="checkListAssets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_checkListReportData_checkListReportDefinitions" Association="Self.FK_checkListReportData_checkListReportDefinitions">
+      <End Role="checkListReportDefinitions" EntitySet="checkListReportDefinitions" />
+      <End Role="checkListReportData" EntitySet="checkListReportDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_checkListReportData_checkListReports" Association="Self.FK_checkListReportData_checkListReports">
+      <End Role="checkListReports" EntitySet="checkListReports" />
+      <End Role="checkListReportData" EntitySet="checkListReportDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contracts_contractTypes" Association="Self.FK_contracts_contractTypes">
+      <End Role="contractTypes" EntitySet="contractTypes" />
+      <End Role="contracts" EntitySet="contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_paymenys_contracts" Association="Self.FK_paymenys_contracts">
+      <End Role="contracts" EntitySet="contracts" />
+      <End Role="paymenys" EntitySet="paymenys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_housingUnits_housingUnitTypes" Association="Self.FK_housingUnits_housingUnitTypes">
+      <End Role="housingUnitTypes" EntitySet="housingUnitTypes" />
+      <End Role="housingUnits" EntitySet="housingUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_housingUnits_usageTypes" Association="Self.FK_housingUnits_usageTypes">
+      <End Role="usageTypes" EntitySet="usageTypes" />
+      <End Role="housingUnits" EntitySet="housingUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_maintenanceRequests_housingUnits" Association="Self.FK_maintenanceRequests_housingUnits">
+      <End Role="housingUnits" EntitySet="housingUnits" />
+      <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_maintenanceInvoices_maintenanceRequests" Association="Self.FK_maintenanceInvoices_maintenanceRequests">
+      <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+      <End Role="maintenanceInvoices" EntitySet="maintenanceInvoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_maintenanceRequests_maintenanceTypes" Association="Self.FK_maintenanceRequests_maintenanceTypes">
+      <End Role="maintenanceTypes" EntitySet="maintenanceTypes" />
+      <End Role="maintenanceRequests" EntitySet="maintenanceRequests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

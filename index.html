@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="realState">
+<head>
+    <base href="/">
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <title>Real Estate Management System</title>
+    <link href="Content/angular-material/angular-material.min.css" rel="stylesheet" />
+    <link href="Content/flaticon/flaticon.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head>
+<body>
+    <div class="container">
+        <div data-ng-view="">
+        </div>
+    </div>
+    <md-content>
+        <div layout="column" ng-controller="HomeCtrl" layout-fill>
+            
+            <md-toolbar class="md-hue-3">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-flex">{{$rootScope.viewTitle}}</h2>
+
+                    <h3>Welcome {{authentication.userName}}</h3>
+                </div>
+            </md-toolbar>
+            <section layout="row" flex>
+                <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Navigation Menu</h1>
+                    </md-toolbar>
+                    <md-list-item>
+                        <p>Dashboard</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Housing Units</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Contracts</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Maintenance</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Reports</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Settings</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Users</p>
+                    </md-list-item>
+                </md-sidenav>
+                <md-content flex layout-padding>
+
+                    <div layout="column" layout-fill layout-align="top center">
+                        @RenderSection("featured", required: false)
+
+
+                        @RenderBody()
+                    </div>
+                    <div flex></div>
+                </md-content>
+
+
+                <span flex></span>
+            </section>
+
+            <md-toolbar class="md-tall md-hue-1">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-flex">Toolbar: md-tall md-accent</h2>
+                </div>
+            </md-toolbar>
+        </div>
+    </md-content>
+    
+
+    <script src="Scripts/angular/angular.js"></script>
+    <script src="Scripts/angular/angular-material.js"></script>
+    <script src="Scripts/angular/angular-aria.js"></script>
+    <script src="Scripts/angular/angular-route.js"></script>
+    <script src="Scripts/angular/angular-animate.js"></script>
+    <script src="Scripts/angular/angular-local-storage.min.js"></script>
+    <script src="Scripts/angular-app/app.js"></script>
+    <script src="Scripts/angular-app/controllers.js"></script>
+    <script src="Scripts/angular-app/services.js"></script>
+</body>
+</html>

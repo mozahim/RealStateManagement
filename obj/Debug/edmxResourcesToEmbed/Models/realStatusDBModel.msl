@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="realStateDBModelStoreContainer" CdmEntityContainer="realStateDBEntities">
+    <EntitySetMapping Name="adminFees">
+      <EntityTypeMapping TypeName="realStateDBModel.adminFee">
+        <MappingFragment StoreEntitySet="adminFees">
+          <ScalarProperty Name="adminFeeid" ColumnName="adminFeeid" />
+          <ScalarProperty Name="adminFeeDefinitionId" ColumnName="adminFeeDefinitionId" />
+          <ScalarProperty Name="adminFeeDescription" ColumnName="adminFeeDescription" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="percentageValue" ColumnName="percentageValue" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="adminFeesDefinitions">
+      <EntityTypeMapping TypeName="realStateDBModel.adminFeesDefinition">
+        <MappingFragment StoreEntitySet="adminFeesDefinition">
+          <ScalarProperty Name="adminFeeDefinitionId" ColumnName="adminFeeDefinitionId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="percentage" ColumnName="percentage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assets">
+      <EntityTypeMapping TypeName="realStateDBModel.asset">
+        <MappingFragment StoreEntitySet="assets">
+          <ScalarProperty Name="assetId" ColumnName="assetId" />
+          <ScalarProperty Name="assetTypeId" ColumnName="assetTypeId" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="brand" ColumnName="brand" />
+          <ScalarProperty Name="serialNo" ColumnName="serialNo" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="condition" ColumnName="condition" />
+          <ScalarProperty Name="givenOn" ColumnName="givenOn" />
+          <ScalarProperty Name="takenOn" ColumnName="takenOn" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assetTypes">
+      <EntityTypeMapping TypeName="realStateDBModel.assetType">
+        <MappingFragment StoreEntitySet="assetTypes">
+          <ScalarProperty Name="assetTypeId" ColumnName="assetTypeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="checkListAssets">
+      <EntityTypeMapping TypeName="realStateDBModel.checkListAsset">
+        <MappingFragment StoreEntitySet="checkListAssets">
+          <ScalarProperty Name="checkListAssetId" ColumnName="checkListAssetId" />
+          <ScalarProperty Name="assetId" ColumnName="assetId" />
+          <ScalarProperty Name="checkListReportId" ColumnName="checkListReportId" />
+          <ScalarProperty Name="condition" ColumnName="condition" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="checkListReportDatas">
+      <EntityTypeMapping TypeName="realStateDBModel.checkListReportData">
+        <MappingFragment StoreEntitySet="checkListReportData">
+          <ScalarProperty Name="checkListReportDataId" ColumnName="checkListReportDataId" />
+          <ScalarProperty Name="checkListReportId" ColumnName="checkListReportId" />
+          <ScalarProperty Name="reportDifinitionId" ColumnName="reportDifinitionId" />
+          <ScalarProperty Name="condition" ColumnName="condition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="checkListReportDefinitions">
+      <EntityTypeMapping TypeName="realStateDBModel.checkListReportDefinition">
+        <MappingFragment StoreEntitySet="checkListReportDefinitions">
+          <ScalarProperty Name="checkListItemId" ColumnName="checkListItemId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="checkListReports">
+      <EntityTypeMapping TypeName="realStateDBModel.checkListReport">
+        <MappingFragment StoreEntitySet="checkListReports">
+          <ScalarProperty Name="checkListReportId" ColumnName="checkListReportId" />
+          <ScalarProperty Name="reportDate" ColumnName="reportDate" />
+          <ScalarProperty Name="performedBy" ColumnName="performedBy" />
+          <ScalarProperty Name="waterAndElectricityCleared" ColumnName="waterAndElectricityCleared" />
+          <ScalarProperty Name="accepted" ColumnName="accepted" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contracts">
+      <EntityTypeMapping TypeName="realStateDBModel.contract">
+        <MappingFragment StoreEntitySet="contracts">
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="housingUnitId" ColumnName="housingUnitId" />
+          <ScalarProperty Name="contractNumber" ColumnName="contractNumber" />
+          <ScalarProperty Name="locationReference" ColumnName="locationReference" />
+          <ScalarProperty Name="contractTypeId" ColumnName="contractTypeId" />
+          <ScalarProperty Name="tenantName" ColumnName="tenantName" />
+          <ScalarProperty Name="emiratesId" ColumnName="emiratesId" />
+          <ScalarProperty Name="emiratesIdExpire" ColumnName="emiratesIdExpire" />
+          <ScalarProperty Name="passportNumber" ColumnName="passportNumber" />
+          <ScalarProperty Name="passportExpire" ColumnName="passportExpire" />
+          <ScalarProperty Name="contactNumber1" ColumnName="contactNumber1" />
+          <ScalarProperty Name="contactNumber2" ColumnName="contactNumber2" />
+          <ScalarProperty Name="POBox" ColumnName="POBox" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="rentValue" ColumnName="rentValue" />
+          <ScalarProperty Name="NoOfPayments" ColumnName="NoOfPayments" />
+          <ScalarProperty Name="familyMembers" ColumnName="familyMembers" />
+          <ScalarProperty Name="familyMembersDescription" ColumnName="familyMembersDescription" />
+          <ScalarProperty Name="insuranceDeposit" ColumnName="insuranceDeposit" />
+          <ScalarProperty Name="insuranceDeduction" ColumnName="insuranceDeduction" />
+          <ScalarProperty Name="insuranceRefunded" ColumnName="insuranceRefunded" />
+          <ScalarProperty Name="insuranceDeductionDescription" ColumnName="insuranceDeductionDescription" />
+          <ScalarProperty Name="insuranceRefundReceivedBy" ColumnName="insuranceRefundReceivedBy" />
+          <ScalarProperty Name="checkListReportReceived" ColumnName="checkListReportReceived" />
+          <ScalarProperty Name="isHolded" ColumnName="isHolded" />
+          <ScalarProperty Name="holdedBy" ColumnName="holdedBy" />
+          <ScalarProperty Name="isRenewed" ColumnName="isRenewed" />
+          <ScalarProperty Name="isEnded" ColumnName="isEnded" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contractTypes">
+      <EntityTypeMapping TypeName="realStateDBModel.contractType">
+        <MappingFragment StoreEntitySet="contractTypes">
+          <ScalarProperty Name="contractTypeId" ColumnName="contractTypeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DMS">
+      <EntityTypeMapping TypeName="realStateDBModel.DM">
+        <MappingFragment StoreEntitySet="DMS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="uploadDatetime" ColumnName="uploadDatetime" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="systemCode" ColumnName="systemCode" />
+          <ScalarProperty Name="systemReferenceId" ColumnName="systemReferenceId" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="fileContent" ColumnName="fileContent" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="housingUnits">
+      <EntityTypeMapping TypeName="realStateDBModel.housingUnit">
+        <MappingFragment StoreEntitySet="housingUnits">
+          <ScalarProperty Name="housingUnitId" ColumnName="housingUnitId" />
+          <ScalarProperty Name="housingUnitTypeId" ColumnName="housingUnitTypeId" />
+          <ScalarProperty Name="usageTypeId" ColumnName="usageTypeId" />
+          <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="emirate" ColumnName="emirate" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="tawtheeqId" ColumnName="tawtheeqId" />
+          <ScalarProperty Name="zone" ColumnName="zone" />
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="plot" ColumnName="plot" />
+          <ScalarProperty Name="ownerName" ColumnName="ownerName" />
+          <ScalarProperty Name="areaSize" ColumnName="areaSize" />
+          <ScalarProperty Name="parent" ColumnName="parent" />
+          <ScalarProperty Name="treeLevel" ColumnName="treeLevel" />
+          <ScalarProperty Name="vacant" ColumnName="vacant" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="subjectToRent" ColumnName="subjectToRent" />
+          <ScalarProperty Name="hasSubUnits" ColumnName="hasSubUnits" />
+          <ScalarProperty Name="treePath" ColumnName="treePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="housingUnitTypes">
+      <EntityTypeMapping TypeName="realStateDBModel.housingUnitType">
+        <MappingFragment StoreEntitySet="housingUnitTypes">
+          <ScalarProperty Name="housingUnitTypeId" ColumnName="housingUnitTypeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maintenanceInvoices">
+      <EntityTypeMapping TypeName="realStateDBModel.maintenanceInvoice">
+        <MappingFragment StoreEntitySet="maintenanceInvoices">
+          <ScalarProperty Name="maintenanceInvoiceId" ColumnName="maintenanceInvoiceId" />
+          <ScalarProperty Name="maintenanceRequestId" ColumnName="maintenanceRequestId" />
+          <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+          <ScalarProperty Name="invoiceDate" ColumnName="invoiceDate" />
+          <ScalarProperty Name="invoiceValue" ColumnName="invoiceValue" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maintenanceRequests">
+      <EntityTypeMapping TypeName="realStateDBModel.maintenanceRequest">
+        <MappingFragment StoreEntitySet="maintenanceRequests">
+          <ScalarProperty Name="maintenanceRequestId" ColumnName="maintenanceRequestId" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="maintenanceTypeId" ColumnName="maintenanceTypeId" />
+          <ScalarProperty Name="requestedBy" ColumnName="requestedBy" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="housingUnitId" ColumnName="housingUnitId" />
+          <ScalarProperty Name="reported" ColumnName="reported" />
+          <ScalarProperty Name="reportingDate" ColumnName="reportingDate" />
+          <ScalarProperty Name="reportedTo" ColumnName="reportedTo" />
+          <ScalarProperty Name="resolved" ColumnName="resolved" />
+          <ScalarProperty Name="resolveDate" ColumnName="resolveDate" />
+          <ScalarProperty Name="resolvedBy" ColumnName="resolvedBy" />
+          <ScalarProperty Name="problemDescription" ColumnName="problemDescription" />
+          <ScalarProperty Name="resolutionDescription" ColumnName="resolutionDescription" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maintenanceTypes">
+      <EntityTypeMapping TypeName="realStateDBModel.maintenanceType">
+        <MappingFragment StoreEntitySet="maintenanceTypes">
+          <ScalarProperty Name="maintenanceTypeId" ColumnName="maintenanceTypeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paymenys">
+      <EntityTypeMapping TypeName="realStateDBModel.paymeny">
+        <MappingFragment StoreEntitySet="paymenys">
+          <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="collected" ColumnName="collected" />
+          <ScalarProperty Name="collectedOn" ColumnName="collectedOn" />
+          <ScalarProperty Name="deposited" ColumnName="deposited" />
+          <ScalarProperty Name="depositedOn" ColumnName="depositedOn" />
+          <ScalarProperty Name="cleared" ColumnName="cleared" />
+          <ScalarProperty Name="clearedOn" ColumnName="clearedOn" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="realStateDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usageTypes">
+      <EntityTypeMapping TypeName="realStateDBModel.usageType">
+        <MappingFragment StoreEntitySet="usageTypes">
+          <ScalarProperty Name="usageTypeId" ColumnName="usageTypeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

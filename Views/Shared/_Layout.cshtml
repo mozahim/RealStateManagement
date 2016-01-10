@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/angular-material")
+</head>
+<body ng-app="realState">
+    <md-content >
+        <div layout="column" ng-controller="HomeCtrl" layout-fill ><!--ng-if="authentication.isAuth"-->
+            <md-toolbar class="md-warn">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-flex">{{$rootScope.viewTitle}}</h2>
+
+
+                </div>
+            </md-toolbar>
+            <section layout="row" flex>
+                <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Navigation Menu</h1>
+                    </md-toolbar>
+                    <md-list-item>
+                        <p>Dashboard</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Housing Units</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Contracts</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Maintenance</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Reports</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Settings</p>
+                    </md-list-item>
+                    <md-list-item>
+                        <p>Users</p>
+                    </md-list-item>
+                </md-sidenav>
+                <md-content flex layout-padding>
+
+                    <div layout="column" layout-fill layout-align="top center">
+                        @RenderSection("featured", required: false)
+
+
+                        @RenderBody()
+                    </div>
+                    <div flex></div>
+                </md-content>
+
+
+                <span flex></span>
+            </section>
+
+            <md-toolbar class="md-tall md-accent">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-flex">Toolbar: md-tall md-accent</h2>
+                </div>
+            </md-toolbar>
+        </div>
+        <div ng-controller="HomeCtrl" >
+            <div layout="column" ng-if="!authentication.isAuth" layout-fill layout-align="top center">
+                <ui-view ng-controller="loginCtrl">
+                    <div ng-messages="projectForm.clientName.$error" ng-hide="message == ''">
+                        <div ng-message="required">{{message}}</div>
+                    </div>
+                    <md-input-container>
+                        <label>Username</label>
+                        <input ng-model="loginData.userName" required>
+                    </md-input-container>
+                    <md-input-container >
+                        <label>Password</label>
+                        <input ng-model="loginData.password" required>
+                    </md-input-container>
+
+                    <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+                </ui-view>
+
+            </div>
+        </div>
+    </md-content>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/angular")
+    @Scripts.Render("~/Scripts/angularapp")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
